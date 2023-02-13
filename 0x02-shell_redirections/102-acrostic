@@ -1,2 +1,2 @@
 #!/bin/bash
-acro="" && while read line; do acro="$acro${line:0:1}"; done && echo "$acro"
+cut -c 1 | paste -s -d "
