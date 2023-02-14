@@ -1,2 +1,2 @@
 #!/bin/bash
-echo $(( count % 2 == 1 ))
+paste -d, -- | cut -d, -f1
