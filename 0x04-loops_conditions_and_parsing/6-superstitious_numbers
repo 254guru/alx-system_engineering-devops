@@ -2,7 +2,6 @@
 # This script displays numbers and custom messages for specific iterations.
 
 count=1
-
 while [ "$count" -le 20 ]; do
   case "$count" in
     4)

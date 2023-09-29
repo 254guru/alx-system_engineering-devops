@@ -2,7 +2,6 @@
 # This script displays different messages based on the loop iteration.
 
 count=1
-
 while [ "$count" -le 10 ]
 do
 	if [ "$count" -eq 4 ];
