@@ -14,5 +14,5 @@ do
 	else
 		echo "Best School"
 	fi
-	count=$((count + 1))
+	(("count += 1"))
 done
