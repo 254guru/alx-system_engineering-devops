@@ -6,7 +6,7 @@ sudo tee /etc/haproxy/haproxy.cfg >/dev/null <<EOL
 global
     log /dev/log    local0
     log /dev/log    local1 notice
-    maxconn 4096
+    chroot /var/lib/haproxy
     user haproxy
     group haproxy
     daemon
@@ -22,6 +22,7 @@ defaults
 
 frontend http_front
     bind *:80
+    mode http
     default_backend http_back
 
 backend http_back
@@ -30,6 +31,5 @@ backend http_back
     server 240687-web-02 54.210.59.168:80 check
 EOL
 
-sudo systemctl daemon-reload
 sudo systemctl enable haproxy
 sudo systemctl start haproxy
