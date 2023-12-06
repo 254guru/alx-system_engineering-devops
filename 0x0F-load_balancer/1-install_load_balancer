@@ -32,4 +32,4 @@ EOL
 
 sudo systemctl daemon-reload
 sudo systemctl enable haproxy
-
+sudo systemctl start haproxy
