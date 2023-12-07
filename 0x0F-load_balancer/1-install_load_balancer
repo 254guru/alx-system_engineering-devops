@@ -3,7 +3,7 @@
 sudo apt-get update
 sudo apt-get install --no-install-recommends software-properties-common
 sudo add-apt-repository ppa:vbernat/haproxy-2.6
-sudo apt-get install haproxy=2.6.\*
+sudo apt-get install -y ihaproxy=2.6.\*
 sudo tee /etc/haproxy/haproxy.cfg >/dev/null <<EOL
 
 # config file
@@ -38,4 +38,4 @@ backend http_back
 EOL
 
 sudo systemctl enable haproxy
-sudo systemctl start haproxy
+sudo systemctl restart haproxy
