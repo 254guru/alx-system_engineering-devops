@@ -1,4 +1,5 @@
-#!/bin/bash
+#!/usr/bin/env bash
+#run software as another user
 
 if [ $# -ne 1 ]; then
 	echo "Usage: $0 <username>"
