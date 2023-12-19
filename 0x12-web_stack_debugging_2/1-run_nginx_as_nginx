@@ -1,0 +1,11 @@
+#!/bin/bash
+
+# backup the original nginx.conf file
+cp /etc/nginx/nginx.conf /etc/nginx/nginx.conf.bak
+
+# modify nginx.conf to change the user to 'nginx' and set the listening port
+sed -i 's/user\s*[^;]*/user nginx;/' /etc/nginx/nginx.conf
+sed -i 's/listen\s*[^;]*;/listen 8080;/g' /etc/nginx/nginx.conf
+
+# Restart Nginx
+service nginx restart
