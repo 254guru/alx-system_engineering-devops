@@ -3,7 +3,7 @@
 sudo apt-get update
 sudo apt-get install -y haproxy
 
-server_config = \
+server_config=\
 "
 global
     log /dev/log    local0
@@ -35,6 +35,6 @@ backend http_back
     server 240687-web-02 54.210.59.168:80 check
     
 "
-sudo echo "$server_config" | sudo tee /etc/haproxy/haproxy.cfg
+sudo echo "$server_config" | sudo tee -a /etc/haproxy/haproxy.cfg
 sudo systemctl enable haproxy
 sudo systemctl restart haproxy.service
