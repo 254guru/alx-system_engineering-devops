@@ -9,7 +9,7 @@ server_config=\
 frontend  frontend
         bind *:80
         mode http
-        default_backend noke_backend
+        default_backend backend
 backend backend
         balance roundrobin
         server 240687-web-01 35.153.231.146:80 check
