@@ -2,6 +2,6 @@
 # script that generates a MYSQL dump and creates
 # a compressed archive out of it
 
-mysqldump -u root -p"$1" --all-databases > backup.sql
-tar -cvzf "$(date %d-%m-%Y)".tar.gz backup.sql
+sudo mysqldump -u root -p"$1" --all-databases > backup.sql
+tar -cvzf "$(date +%d-%m-%Y)".tar.gz backup.sql
 
