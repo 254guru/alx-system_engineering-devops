@@ -1,27 +1,9 @@
 # automate the task of creating a custom HTTP header response
-
-exec {'update_system':
-  command => '/usr/bin/apt-get -y update',
-}
-
-package { 'nginx':
-  ensure => 'installed',
-}
-
-service { 'nginx':
-  ensure  => 'running',
-  enable  => true,
-  require => Package['nginx'],
-}
-
-file { '/var/www/html/index.html' :
-  content => 'Hello World!',
-}
-
-file_line { 'Creating header':
-  	ensure => present,
-  	path   => '/etc/nginx/sites-available/default',
-  	line   => "\tadd_header X-Served-By ${hostname};",
-  	after  => 'server_name _;',
-	require => Service['nginx'],
+# Manifest for creating a custom HTTP header response
+exec { 'http header':
+  command  => 'sudo apt-get update -y;
+	sudo apt-get install nginx -y;
+	sudo sed -i "s/server_name _;/server_name _;\n\n\tadd_header X-Served-By $HOSTNAME;\n/" /etc/nginx/sites-enabled/default;
+	sudo service nginx restart',
+  provider => shell,
 }
