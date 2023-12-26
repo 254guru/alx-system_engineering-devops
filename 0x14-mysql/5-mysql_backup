@@ -1,20 +1,5 @@
 #!/usr/bin/env bash
 # script that generates a MYSQL dump and creates
 # a compressed archive out of it
-
-# Generate MySQL dump
-sudo mysqldump -u root -p$1 --all-databases > backup.sql
-
-# Get current day, month, and year
-DAY=$(date +%d)
-MONTH=$(date +%m)
-YEAR=$(date +%Y)
-
-# Rename the dump file
-mv backup.sql ${DAY}-${MONTH}-${YEAR}.sql
-
-# Compress the dump file into a .tar.gz archive
-tar -czvf ${DAY}-${MONTH}-${YEAR}.tar.gz ${DAY}-${MONTH}-${YEAR}.sql
-
-# Remove the original dump file
-rm ${DAY}-${MONTH}-${YEAR}.sql
+mysqldump -u root -p"$1" --all-databases > backup.sql
+tar -cvzf "$(date %d-%m-%Y)".tar.gz backup.sql
