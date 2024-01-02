@@ -20,7 +20,7 @@ def fetch_employee_todo_progress(employee_id):
         # Fetching user data separately to get the user's name
         user_res = requests.get(f"https://jsonplaceholder.typicode.com/users/{employee_id}")
         if user_res.status_code == 200:
-            user_data = user_response.json()
+            user_data = user_res.json()
             employee_name = user_data['name']
         else:
             print(f"Failed to fetch user data. Status code: {user_res.status_code}")
