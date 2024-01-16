@@ -24,9 +24,3 @@ def number_of_subscribers(subreddit):
     else:
         print(f"Error: {response.status_code}")
         return 0
-
-
-if __name__ == '__main__':
-    subreddit_name = input("Enter the subreddit name: ")
-    result = number_of_subscribers(subreddit_name)
-    print(f"Number of subscribers: {result}")
