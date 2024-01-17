@@ -10,14 +10,16 @@ def number_of_subscribers(subreddit):
     function that queries the reddit API and returns the
     number of subscribers
     """
-    headers = {'User-Agent': 'CustomUserAgent/1.0'}
-    url = f"https://www.reddit.com/r/{subreddit}/about.json"
+    base_url = 'https://www.reddit.com'
+    api_uri = '{base}/r/{subreddit}/about.json'.format(base=base_url,
+                                                       subreddit=subreddit)
 
-    response = request.get(url, headers=headers, allow_redirects=False)
+    user_agent = {'User-Agent': 'Python/requests'}
 
-    if response.status_code == 200:
-        data = response.json()
-        subscribers_count = data['data']['subscribers']
-        return subscribers_count
-    else response.status_code == 404:
+    response = requests.get(api_uri, headers=user_agent,
+                       allow_redirects=False)
+
+    if res.status_code in [302, 404]:
         return 0
+
+    return response.json().get('data').get('subscribers')
