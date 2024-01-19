@@ -2,17 +2,20 @@
 """
 import modules
 """
-import sys
 import requests
 from collections import Counter
 
 
-def count_words(subreddit, word_list):
+def count_words(subreddit, word_list, after=None, counts=None):
     # Reddit API endpoint for getting hot posts in a subreddit
     url = f"https://www.reddit.com/r/{subreddit}/hot.json?limit=100"
 
     # Set a custom User-Agent to avoid issues with Reddit API
     headers = {'User-Agent': 'CustomUserAgent/1.0'}
+
+    # Add 'after' parameter if it exists
+    if after:
+        url += f"&after={after}"
 
     # Make the GET request to the Reddit API
     response = requests.get(url, headers=headers)
@@ -23,8 +26,9 @@ def count_words(subreddit, word_list):
         data = response.json()
         posts = data['data']['children']
 
-        # Initialize counts dictionary
-        counts = Counter()
+        # Initialize counts dictionary if not provided
+        if counts is None:
+            counts = Counter()
 
         # Update counts with occurrences of words in the titles
         for post in posts:
@@ -35,10 +39,11 @@ def count_words(subreddit, word_list):
                 if f" {word_lower} " in f" {title} ":
                     counts[word_lower] += 1
 
-        # Recursive call with the 'after' parameter for the next page
+        # Check for the presence of the 'after' parameter in the response
         after = data['data']['after']
         if after:
-            return count_words(subreddit, word_list)
+            # Recursive call with the 'after' parameter for the next page
+            return count_words(subreddit, word_list, after, counts)
         else:
             # No more pages, print the counts in descending order
             print_counts(counts)
@@ -54,6 +59,5 @@ def print_counts(counts):
     # Sort counts in descending order by count, then alphabetically by word
     sorted_counts = sorted(counts.items(), key=lambda x: (-x[1], x[0]))
 
-    # Print the sorted counts
     for word, count in sorted_counts:
         print(f"{word}: {count}")
