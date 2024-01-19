@@ -1,45 +1,44 @@
 #!/usr/bin/python3
 """
-import module
+import modules
 """
 import requests
 
 
-def recurse(subreddit, hot_list=[], after=None):
-    # Reddit API endpoint for getting hot posts in a subreddit
-    url = f"https://www.reddit.com/r/{subreddit}/hot.json?limit=100"
+def recurse(subreddit, hot_list=[], after=''):
+    """
+    function that returns a list containing the titles of
+    all hot articles for a given subreddit.
+    """
+    # Set the Default URL strings
+    base_url = 'https://www.reddit.com'
+    api_uri = '{base}/r/{subreddit}/hot.json'.format(base=base_url,
+                                                     subreddit=subreddit)
 
-    # Set a custom User-Agent to avoid issues with Reddit API
-    headers = {'User-Agent': 'CustomUserAgent/1.0'}
+    # Set an User-Agent
+    user_agent = {'User-Agent': 'Python/requests'}
 
-    # Add 'after' parameter if it exists
-    if after:
-        url += f"&after={after}"
+    # Set the Query Strings to Request
+    payload = {'after': after, 'limit': '100'}
 
-    # Make the GET request to the Reddit API
-    response = requests.get(url, headers=headers)
+    # Get the Response of the Reddit API
+    response = requests.get(api_uri, headers=user_agent,
+                            params=payload, allow_redirects=False)
 
-    # Check if the request was successful (status code 200)
+    # Checks if the subreddit is invalid
     if response.status_code == 200:
-        # Parse the JSON response to get the posts
-        data = response.json()
-        posts = data['data']['children']
+        response = response.json()
+        hot_posts = response.get('data').get('children')
+        after = response.get('data').get('after')
 
-        # Add titles of the current page to the hot_list
-        hot_list.extend([post['data']['title'] for post in posts])
+        # Print each hot post title
+        for post in hot_posts:
+            hot_list.append(post.get('data').get('title'))
 
-        # Check for the presence of the 'after' parameter in the response
-        after = data['data']['after']
-        if after:
-            # Recursive call with the 'after' parameter for the next page
-            return recurse(subreddit, hot_list, after)
-        else:
-            # No more pages, return the final hot_list
-            return hot_list
-    elif response.status_code == 404:
-        # Subreddit not found, return None
-        return None
-    else:
-        # Handle other errors
-        print(f"Error: {response.status_code}")
-        return None
+        # Get the next page of hot posts
+        if after is not None:
+            recurse(subreddit, hot_list, after)
+
+        return hot_list
+
+    return None
