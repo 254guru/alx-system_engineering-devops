@@ -34,13 +34,13 @@ The immediate resolution involved rolling back the problematic code deployment t
 ## Corrective and Preventative Measures
 
 ### Improvements/Fixes:
-<ol>Implement additional automated tests in the continuous integration pipeline to catch database connection issues during the pre-deployment phase.</ol>
-<ol>Enhance monitoring capabilities to provide early detection of abnormal database connection patterns.</ol>
+<ol><li>Implement additional automated tests in the continuous integration pipeline to catch database connection issues during the pre-deployment phase.</li>
+<li>Enhance monitoring capabilities to provide early detection of abnormal database connection patterns.</li></ol>
 
 ### Tasks:
-<ol>Conduct a thorough review of the code deployment process, emphasizing the importance of code reviews and testing.</ol>
-<ol>Implement stricter controls on database connection limits to prevent similar incidents.</ol>
-<ol>Enhance documentation regarding the potential impact of code changes on database connections to raise awareness among developers.</ol>
-<ol>Schedule a training session for the development team to increase awareness of best practices related to database connection management.</ol>
+<ol><li>Conduct a thorough review of the code deployment process, emphasizing the importance of code reviews and testing.</li>
+<li>Implement stricter controls on database connection limits to prevent similar incidents.</li>
+<li>Enhance documentation regarding the potential impact of code changes on database connections to raise awareness among developers.</li>
+<li>Schedule a training session for the development team to increase awareness of best practices related to database connection management.</li></ol>
 
 <p>This postmortem highlights the critical importance of robust monitoring, swift incident response, and a comprehensive review of deployment processes. By implementing these corrective and preventative measures, we aim to fortify our system against similar incidents in the future, ensuring a more resilient and reliable web stack.</p>
