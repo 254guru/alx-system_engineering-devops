@@ -1,6 +1,6 @@
 # My first postmoterm
 
-Using one of the web stack debugging project issue or an outage you have personally face, write a postmortem. Most of you will never have faced an outage, so just get creative and invent your own :)
+<p>Using one of the web stack debugging project issue or an outage you have personally face, write a postmortem. Most of you will never have faced an outage, so just get creative and invent your own :)
 
 Requirements:
 
@@ -28,4 +28,4 @@ Requirements:
 
 While postmortem format can vary, stick to this one so that you can get properly reviewed by your peers.
 
-Please, remember that these blogs must be written in English to further your technical ability in a variety of settings.
+Please, remember that these blogs must be written in English to further your technical ability in a variety of settings.</p>
