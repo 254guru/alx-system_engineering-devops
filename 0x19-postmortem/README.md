@@ -1,5 +1,5 @@
 # Postmortem: Web Stack Outage Incident
-
+<img src="images/julia-joppien-XFUqd0u5U7w-unsplash.jpg" alt="broken computer">
 ## Issue Summary
 
 ### Duration
@@ -20,7 +20,7 @@ The root cause of the outage was identified as an unexpected spike in database c
 <li><strong>11:45 AM:</strong>DDoS mitigation efforts did not improve the situation. Realized the issue was with the application code causing a surge in database connections.</li>
 <li><strong>12:00 PM:</strong>Incident escalated to the Database and Application teams for further investigation and resolution.</li>
 <li><strong>12:15 PM:</strong>Identified a code deployment that inadvertently introduced a database connection leak. Rolled back the deployment to a stable version.</li>
-<li><strong>12:30 PM:</strong>Database connections stabilized, and application performance improved. System returned to normal operation.</li>
+<li><strong>12:30 PM:</strong><img src="icons8-confetti.svg" alt="congrats">Database connections stabilized, and application performance improved. System returned to normal operation.</li>
 <li><strong>12:45 PM:</strong>Incident officially declared resolved. Post-incident analysis meeting scheduled.</li>
 
 ## Root Cause and Resolution
